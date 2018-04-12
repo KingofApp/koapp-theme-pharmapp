@@ -1,0 +1,160 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../../bower_components/koa-behaviors/koa-button-behavior.html">
+<link rel="import" href="../../../../bower_components/paper-behaviors/paper-ripple-behavior.html">
+<link rel="import" href="../../styles/default-theme.html">
+
+<dom-module id="pharmapp-button">
+  <template>
+    <style>
+
+      :host {
+
+        background          : var(--background-color-primary);
+        border-radius       : var(--button-border-radius);
+        height              : var(--button-height);
+        width               : var(--button-width);
+        font-size           : var(--button-font-size);
+        font                : var(--font-family-primary);
+
+        display             : inline-block;
+        position            : relative;
+        box-sizing          : border-box;
+        text-align          : center;
+        text-transform      : uppercase;
+        outline-width       : 0;
+        cursor              : pointer;
+        z-index             : 0;
+        margin              : 0 0.29em;
+        padding             : 0.7em 0.57em;
+        user-select         : none;
+        -webkit-user-select : none;
+        -moz-user-select    : none;
+        -ms-user-select     : none;
+
+        @apply(--button);
+
+      }
+
+      :host .button-text{
+
+        color  : var(--text-color-primary);
+        width  : 120px;
+        height : 22px;
+
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        text-transform: capitalize;
+
+      }
+
+      :host([link]) {
+
+        background-color : var(--background-color-link);
+
+      }
+
+      :host([link]) .button-text{
+
+        color : var(--text-color-link);
+
+      }
+
+      :host([big]) {
+
+        width  : var(--button-width-big);
+
+      }
+
+      :host([big]) .button-text{
+
+        width  : 222px;
+        height : 22px;
+
+      }
+
+      :host([disabled]:not([link])) {
+
+        background       : var(--background-color-disabled);
+
+        cursor           : auto;
+        pointer-events   : none;
+
+        @apply(--button-disabled);
+
+      }
+
+      :host([disabled]) .button-text{
+
+        color : var(--text-color-disabled);
+
+      }
+
+      :host([active]:not([link])), :host([selected]:not([link])) {
+
+        background : var(--background-color-primary-dark);
+
+      }
+
+      :host([active][link]) .button-text, :host([selected][link]) .button-text {
+
+        color : var(--text-color-link-dark);
+
+      }
+
+      :host(:not([big]):not([link]).keyboard-focus) {
+
+        font-weight: bold;
+
+        @apply(--button-keyboard-focus);
+
+      }
+
+      :host([big].keyboard-focus) {
+
+        font-weight: bold;
+
+        @apply(--button-big-keyboard-focus);
+
+      }
+
+      :host([link].keyboard-focus) {
+
+        font-weight: bold;
+
+        @apply(--button-link-keyboard-focus);
+        
+      }
+
+      :host(:not([link]):not([disabled])) {
+
+        box-shadow: 0 2px 2px 0    var(--background-color-primary),
+                    0 1px 5px 0    var(--background-color-primary),
+                    0 3px 1px -2px var(--background-color-primary);
+
+      }
+
+    </style>
+
+    <!-- write your template here -->
+    <span class="button-text">
+      <content>
+      </content>
+    </span>
+    <!-- end template -->
+  </template>
+
+  <script>
+    Polymer({
+      is: 'pharmapp-button',
+
+      behaviors: [
+        Polymer.KoaButtonBehavior,
+        Polymer.PaperRippleBehavior
+      ]
+    });
+  </script>
+</dom-module>

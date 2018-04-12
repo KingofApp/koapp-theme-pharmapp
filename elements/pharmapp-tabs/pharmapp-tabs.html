@@ -1,0 +1,120 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../../bower_components/koa-behaviors/koa-tabs-behavior.html">
+<link rel="import" href="../../styles/default-theme.html">
+<link rel="import" href="pharmapp-tab.html">
+
+<dom-module id="pharmapp-tabs">
+  <template>
+    <style>
+      :host {
+        
+        background-color : var(--tabs-background-color);
+        color            : var(--tabs-text-color);
+
+        font-weight         : normal;
+        height              : 48px;
+        font-size           : 14px;
+        overflow            : hidden;
+        -webkit-user-select : none;
+        -moz-user-select    : none;
+        -ms-user-select     : none;
+        user-select         : none;
+
+        /* NOTE: Both values are needed, since some phones require the value to be `transparent`. */
+
+        -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
+        -webkit-tap-highlight-color : transparent;
+
+        @apply(--layout-center);
+        @apply(--layout);
+        @apply(--tabs);
+
+      }
+
+      :host([scrollable]) {
+
+        background : linear-gradient(to left, rgba(255, 255, 255, 0), #ffffff );
+
+      }
+
+      :host-context([dir=rtl]) {
+
+        @apply(--layout-horizontal-reverse);
+
+      }
+
+      #tabsContainer {
+
+        white-space : nowrap;
+        overflow    : hidden;
+        position    : relative;
+        height      : 100%;
+
+        @apply(--layout-flex-auto);
+      
+      }
+
+      #tabsContent {
+
+        -moz-flex-basis : auto;
+        -ms-flex-basis  : auto;
+        flex-basis      : auto;
+        height          : 100%;
+
+      }
+
+      #tabsContent.scrollable {
+
+        position    : absolute;
+        white-space : nowrap;
+
+      }
+
+      #tabsContent.horizontal {
+
+        @apply(--layout-horizontal);
+
+      }
+
+      .not-visible {
+
+        opacity : 0;
+        cursor  : default;
+
+      }
+
+      #tabsContent > ::content > * {
+
+        height : 100%;
+
+      }
+
+    </style>
+
+    <!-- write your template here -->
+    <div id="tabsContainer" on-track="_scroll" on-down="_down">
+      <div id="tabsContent" class$="[[_computeTabsContentClass(scrollable)]]">
+        <content select="*"></content>
+      </div>
+    </div>
+    <!-- end template -->
+  </template>
+
+  <script>
+    Polymer({
+      is: 'pharmapp-tabs',
+
+      behaviors: [
+        Polymer.KoaTabsBehavior
+      ],
+
+      properties: {
+        selectable: {
+          type: String,
+          value: 'pharmapp-tab'
+        }
+      }
+    });
+  </script>
+</dom-module>

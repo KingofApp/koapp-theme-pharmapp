@@ -1,0 +1,198 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../../bower_components/koa-behaviors/koa-radio-button-behavior.html">
+<link rel="import" href="../../../../bower_components/paper-behaviors/paper-checked-element-behavior.html">
+<link rel="import" href="../../styles/default-theme.html">
+
+<dom-module id="pharmapp-radio-button">
+  <template>
+    <style>
+
+      :host {
+
+        white-space : nowrap;
+        display     : inline-block;
+        cursor      : pointer;
+
+      }
+
+      :host(:focus) {
+
+        outline : none;
+
+      }
+
+      #radioContainer {
+
+        vertical-align : middle;
+        position       : relative;
+        display        : inline-block;
+        height         : 16px;
+        width          : 16px;
+
+      }
+
+      #ink {
+
+        color : var(--radio-button-unchecked-ink-color, --primary-text-color);
+
+        pointer-events : none;
+        position       : absolute;
+        opacity        : 0.6;
+        height         : 48px;
+        width          : 48px;
+        left           : -16px;
+        top            : -16px;
+
+      }
+
+      :host-context([dir="rtl"]) #ink {
+
+        right : -15px;
+        left  : auto;
+
+      }
+
+      #ink[checked] {
+
+        color : var(--radio-button-checked-ink-color, --primary-color);
+
+      }
+
+      #offRadio {
+
+        background-color : var(--radio-button-unchecked-background-color, transparent);
+        border           : var(--radio-button-border);
+
+        border-radius : 50%;
+        transition    : border-color 0.28s;
+        box-sizing    : content-box;
+        position      : absolute;
+        height        : 12px;
+        width         : 12px;
+        right         : 0px;
+        left          : 0px;
+        top           : 0px;
+
+      }
+
+      #onRadio {
+
+        background-color : var(--radio-button-checkmark-color);
+
+        -webkit-transform : scale(0);
+        transition        : -webkit-transform ease 0.28s;
+        transition        : transform ease 0.28s;
+        position          : absolute;
+        box-sizing        : content-box;
+        border-radius     : 50%;
+        transform         : scale(0);
+        top               : 4px;
+        left              : 4px;
+        right             : 4px;
+        width             : 8px;
+        height            : 8px;
+
+      }
+
+      :host([checked]) #offRadio {
+
+        background-color : var(--background-color-primary);
+        border-color     : var(--background-color-primary);
+
+      }
+
+      :host([checked]) #onRadio {
+
+        -webkit-transform : scale(1);
+        transform         : scale(1);
+
+      }
+
+      #radioLabel {
+
+        margin-left : var(--radio-button-label-spacing, 10px);
+        color       : var(--radio-button-text-color);
+
+        position       : relative;
+        display        : inline-block;
+        vertical-align : middle;
+        white-space    : normal;
+        pointer-events : none;
+
+      }
+
+      :host-context([dir="rtl"]) #radioLabel {
+
+        margin-right : var(--radio-button-label-spacing, 10px);
+
+        margin-left : 0px;
+
+      }
+
+      #radioLabel[hidden] {
+
+        display : none;
+
+      }
+
+      /* disabled state */
+      :host([disabled]) {
+
+        pointer-events : none;
+
+      }
+
+      :host([disabled]) #offRadio {
+
+        background-color : var(--radio-button-text-color);
+        border-color     : var(--radio-button-border-color);
+
+        opacity : 0.5;
+
+      }
+
+      :host([disabled][checked]) #onRadio {
+
+        background-color : var(--radio-button-border-color);
+
+        opacity : 0.5;
+
+      }
+
+      :host([disabled]) #radioLabel {
+
+        /* slightly darker than the button, so that it's readable */
+
+        opacity : 0.65;
+
+      }
+
+    </style>
+
+    <!-- write your template here -->
+    <div id="radioContainer">
+      <div id="offRadio"></div>
+      <div id="onRadio"></div>
+    </div>
+
+    <div id="radioLabel"><content></content></div>
+    <!-- end template -->
+  </template>
+
+  <script>
+    Polymer({
+      is: 'pharmapp-radio-button',
+
+      behaviors: [
+        Polymer.KoaRadioButtonBehavior,
+        Polymer.PaperCheckedElementBehavior
+      ],
+
+      // create the element ripple inside the `radioContainer`
+      _createRipple: function() {
+        this._rippleContainer = this.$.radioContainer;
+        return Polymer.PaperInkyFocusBehaviorImpl._createRipple.call(this);
+      }
+    });
+  </script>
+</dom-module>

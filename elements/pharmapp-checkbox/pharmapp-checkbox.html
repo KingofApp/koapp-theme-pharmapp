@@ -1,0 +1,263 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../../bower_components/koa-behaviors/koa-checkbox-behavior.html">
+<link rel="import" href="../../../../bower_components/paper-behaviors/paper-checked-element-behavior.html">
+<link rel="import" href="../../styles/default-theme.html">
+
+<dom-module id="pharmapp-checkbox">
+  <template>
+    <style>
+
+      :host {
+
+        --calculated-checkbox-size: var(--checkbox-size);
+
+        white-space : nowrap;
+        line-height : 0;
+        display     : inline-block;
+        cursor      : pointer;
+
+      }
+
+      :host(:focus) {
+
+        outline : none;
+
+      }
+
+      .hidden {
+
+        display : none;
+
+      }
+
+      #checkboxContainer {
+
+        background-color : var(--checkbox-unchecked-background-color, transparent);
+        min-width        : var(--calculated-checkbox-size);
+        height           : var(--calculated-checkbox-size);
+        width            : var(--calculated-checkbox-size);
+
+        vertical-align : middle;
+        display        : inline-block;
+        position       : relative;
+
+      }
+
+      #ink {
+
+        height : calc(2.66 * var(--calculated-checkbox-size));
+        width  : calc(2.66 * var(--calculated-checkbox-size));
+        color  : var(--checkbox-unchecked-ink-color, --primary-text-color);
+        left   : calc(0px - (2.66 * var(--calculated-checkbox-size) - var(--calculated-checkbox-size)) / 2);
+        top    : calc(0px - (2.66 * var(--calculated-checkbox-size) - var(--calculated-checkbox-size)) / 2);
+
+        /* Center the ripple in the checkbox by negative offsetting it by
+         * (inkWidth - rippleWidth) / 2 */
+        
+        pointer-events : none;
+        position       : absolute;
+        opacity        : 0.6;
+
+      }
+
+      :host-context([dir="rtl"]) #ink {
+
+        right : calc(0px - (2.66 * var(--calculated-checkbox-size) - var(--calculated-checkbox-size)) / 2);
+        left  : auto;
+
+      }
+
+      #ink[checked] {
+
+        color : var(--checkbox-checked-ink-color, --primary-color);
+
+      }
+
+      #checkbox {
+
+        border : var(--checkbox-border);
+
+        -webkit-transition : background-color 140ms, border-color 140ms;
+        transition         : background-color 140ms, border-color 140ms;
+        box-sizing         : border-box;
+        pointer-events     : none;
+        border-radius      : 0px;
+        position           : relative;
+        height             : 100%;
+
+      }
+
+      /* checkbox checked animations */
+      #checkbox.checked #checkmark {
+
+        -webkit-animation : checkmark-expand 140ms ease-out forwards;
+        animation         : checkmark-expand 140ms ease-out forwards;
+
+      }
+
+      @-webkit-keyframes checkmark-expand {
+
+        0% {
+
+          -webkit-transform : scale(0, 0) rotate(45deg);
+
+        }
+
+        100% {
+
+          -webkit-transform : scale(1, 1) rotate(45deg);
+
+        }
+
+      }
+
+      @keyframes checkmark-expand {
+
+        0% {
+
+          transform: scale(0, 0) rotate(45deg);
+
+        }
+
+        100% {
+
+          transform: scale(1, 1) rotate(45deg);
+
+        }
+
+      }
+
+      #checkbox.checked {
+
+        background-color : var(--background-color-primary);
+        border-color     : var(--background-color-primary);
+
+      }
+
+      #checkmark {
+
+        border-bottom-width : calc(2/15 * var(--calculated-checkbox-size));
+        border-right-width  : calc(2/15 * var(--calculated-checkbox-size));
+        border-color        : var(--checkbox-checkmark-color);
+
+        -webkit-transform-origin : 97% 86%;
+        transform-origin         : 97% 86%;
+        border-style             : solid;
+        box-sizing               : content-box; /* protect against page-level box-sizing */
+        position                 : absolute;
+        width                    : 36%;
+        height                   : 70%;
+        border-top               : none;
+        border-left              : none;
+        
+      }
+
+      :host-context([dir="rtl"]) #checkmark {
+
+        -webkit-transform-origin : 50% 14%;
+        transform-origin         : 50% 14%;
+
+      }
+
+      /* label */
+      #checkboxLabel {
+
+        padding-left : var(--checkbox-label-spacing, 8px);
+        color        : var(--checkbox-text-color);
+
+        vertical-align : middle;
+        pointer-events : none;
+        line-height    : normal;
+        white-space    : normal;
+        position       : relative;
+        display        : inline-block;
+
+      }
+
+      :host-context([dir="rtl"]) #checkboxLabel {
+
+        padding-right : var(--checkbox-label-spacing, 8px);
+
+        padding-left : 0;
+
+      }
+
+      #checkboxLabel[hidden] {
+
+        display: none;
+
+      }
+
+      /* disabled state */
+      :host([disabled]) {
+
+        pointer-events : none;
+
+      }
+
+      :host([disabled]) #checkbox {
+
+        background-color : var(--checkbox-text-color);
+        border-color     : var(--checkbox-border-color);
+
+        opacity : 0.5;
+
+      }
+
+      :host([disabled]) #checkmark {
+
+        border-color : var(--checkbox-border-color);
+
+      }
+
+      :host([disabled][checked]) #checkbox {
+
+        background-color : var(--checkbox-text-color);
+
+        opacity : 0.5;
+
+      }
+
+      :host([disabled]) #checkboxLabel  {
+
+        opacity: 0.65;
+
+      }
+
+      /* invalid state */
+      #checkbox.invalid:not(.checked) {
+
+        border-color : var(--checkbox-error-color, --error-color);
+
+      }
+
+    </style>
+
+    <!-- write your template here -->
+    <div id="checkboxContainer">
+      <div id="checkbox" class$="[[_computeCheckboxClass(checked, invalid)]]">
+        <div id="checkmark" class$="[[_computeCheckmarkClass(checked)]]"></div>
+      </div>
+    </div>
+
+    <div id="checkboxLabel"><content></content></div>
+    <!-- end template -->
+  </template>
+
+  <script>
+    Polymer({
+      is: 'pharmapp-checkbox',
+
+      behaviors: [
+        Polymer.KoaCheckboxBehavior,
+        Polymer.PaperCheckedElementBehavior
+      ],
+
+      // create ripple inside the checkboxContainer
+      _createRipple: function() {
+        this._rippleContainer = this.$.checkboxContainer;
+        return Polymer.PaperInkyFocusBehaviorImpl._createRipple.call(this);
+      }
+    });
+  </script>
+</dom-module>

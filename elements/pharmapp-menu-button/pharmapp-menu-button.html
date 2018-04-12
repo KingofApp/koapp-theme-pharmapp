@@ -1,0 +1,108 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../../bower_components/iron-dropdown/iron-dropdown.html">
+<link rel="import" href="../../../../bower_components/koa-behaviors/koa-menu-button-behavior.html">
+<link rel="import" href="../../../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../styles/default-theme.html">
+
+<dom-module id="pharmapp-menu-button">
+  <template>
+    <style>
+
+      :host {
+
+        position : relative;
+        display  : inline-block;
+        outline  : none;
+        padding  : 8px;
+
+        @apply(--menu-button);
+
+      }
+
+      :host([active]) {
+
+        background-color : #00e2a1;
+
+      }
+
+      :host([disabled]) {
+
+        cursor : auto;
+
+        @apply(--menu-button-disabled);
+
+      }
+
+      :host([vertical-align="top"]) .dropdown-content {
+
+        margin-bottom : 20px;
+        margin-top    : -10px;
+        top           : 10px;
+
+      }
+
+      :host([vertical-align="bottom"]) .dropdown-content {
+
+        margin-bottom : -10px;
+        margin-top    : 20px;
+        bottom        : 10px;
+
+      }
+
+      iron-dropdown {
+
+        @apply(--menu-button-dropdown);
+
+      }
+
+      .dropdown-content {
+
+        background-color : var(--menu-button-dropdown-background, --background-color-primary);
+
+        border-radius : 2px;
+
+        @apply(--menu-button-content);
+
+      }
+
+      div#trigger {
+
+        --pharmapp-icon-button-border-radius : 50% !important;
+
+      }
+
+    </style>
+
+    <!-- write your template here -->
+    <div id="trigger" on-tap="open">
+      <content select=".dropdown-trigger"></content>
+    </div>
+
+    <iron-dropdown
+      id="dropdown"
+      opened="{{opened}}"
+      horizontal-align="[[horizontalAlign]]"
+      vertical-align="[[verticalAlign]]"
+      horizontal-offset="[[horizontalOffset]]"
+      vertical-offset="[[verticalOffset]]"
+      open-animation-config="[[openAnimationConfig]]"
+      close-animation-config="[[closeAnimationConfig]]"
+      no-animations="[[noAnimations]]"
+      focus-target="[[_dropdownContent]]">
+      <paper-material class="dropdown-content">
+        <content id="content" select=".dropdown-content"></content>
+      </paper-material>
+    </iron-dropdown>
+    <!-- end template -->
+  </template>
+
+  <script>
+    Polymer({
+      is: 'pharmapp-menu-button',
+
+      behaviors: [
+        Polymer.KoaMenuButtonBehavior
+      ]
+    });
+  </script>
+</dom-module>

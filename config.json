@@ -1,0 +1,97 @@
+{
+  "name": "Material Design",
+  "identifier": "koapp-theme-pharmapp",
+  "description": {
+    "en-US" : "",
+    "es-ES" : "Plantilla basada en las guías de diseño de Material Design"
+  },
+  "version": "1.0.0",
+  "author": "King of App",
+  "category": [
+    "material-design"
+  ],
+  "price": 0,
+  "platforms": [
+    "pharmapp",
+    "ios",
+    "windows"
+  ],
+  "showOn": {
+    "market": true
+  },
+  "images" : {
+    "list" : "themes/koapp-theme-pharmapp/images/list.png",
+    "screenshots" : [
+      "themes/koapp-theme-pharmapp/images/screenshot01.png"
+    ],
+    "popover" : "themes/koapp-theme-pharmapp/images/popover.png",
+    "banner" : "themes/koapp-theme-pharmapp/images/banner.png"
+  },
+  "defaultConfig": {
+    "colors": {
+      "fontFamilyPrimary"              : "Lato",
+      "fontFamilyTitle"                : "Lato",
+      "backgroundColorPrimary"         : "#7ea7e9",
+      "backgroundColorPrimaryDark"     : "#3d71c4",
+      "backgroundColorLink"            : "transparent",
+      "backgroundColorDisabled"        : "#f0f0f0",
+      "textColorPrimary"               : "#ffffff",
+      "textColorLink"                  : "#7ea7e9",
+      "textColorLinkDark"              : "#3d71c4",
+      "textColorDisabled"              : "#b5becb",
+      "buttonBorderRadius"             : "100px",
+      "buttonHeigth"                   : "50px",
+      "buttonWidth"                    : "150px",
+      "buttonWidthBig"                 : "278px",
+      "buttonFontSize"                 : "18px",
+      "iconButtonBorderRadius"         : "5px",
+      "toggleButtonBackgroundColorBar" : "#f5f6fb",
+      "tabsBackgroundColor"            : "transparent",
+      "tabsTextColor"                  : "#6c7e98",
+      "tabsBorderBottomFocus"          : "4px solid #7ea7e9",
+      "cardBackgroundColor"            : "#ffffff",
+      "cardTextColorTitle"             : "#6c7e98",
+      "cardTextColorContent"           : "rgba(108, 126, 152, 0.5)",
+      "checkboxSize"                   : "19px",
+      "checkboxBorder"                 : "2px solid #6c7e98",
+      "checkboxBorderColor"            : "#6c7e98",
+      "checkboxTextColor"              : "rgba(108, 126, 152, 0.5)",
+      "checkboxCheckmarkColor"         : "#ffffff",
+      "radioButtonBorder"              : "2px solid #6c7e98",
+      "radioButtonBorderColor"         : "#6c7e98",
+      "radioButtonTextColor"           : "rgba(108, 126, 152, 0.5)",
+      "radioButtonCheckmarkColor"      : "#ffffff",
+
+      "primaryTextColor": "#000000",
+      "primaryBackgroundColor": "#7ea7e9",
+      "secondaryTextColor": "#737373",
+      "dividerColor": "#dbdbdb",
+      "primaryColor": "#3f51b5",
+      "lightPrimaryColor": "#c5cae9",
+      "darkPrimaryColor": "#3d71c4",
+      "accentColor": "#ff4081",
+      "lightAccentColor": "#ff80ab",
+      "darkAccentColor": "#f50057",
+      "errorColor": "#dd2c00",
+      "backgroundColor": "#ffffff",
+      "disabledBackgroundColor": "#f0f0f0",
+      "disabledTextColor": "#b5becb"
+    },
+    "images": {
+      "background": ""
+    },
+    "fonts": {
+      "primaryFontFamily": {
+        "name": "Lato",
+        "url": "https://fonts.googleapis.com/css?family=Lato"
+      },
+      "titleFontFamily": {
+        "name": "Lato",
+        "url": "https://fonts.googleapis.com/css?family=Lato"
+      }
+    },
+    "menu": "polymermenu"
+  },
+  "subscription": false,
+  "main": "themes/koapp-theme-pharmapp/koapp-theme-pharmapp.html"
+}

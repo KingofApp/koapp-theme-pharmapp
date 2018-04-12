@@ -1,0 +1,25 @@
+/* General styles */
+
+.module > a {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+}
+
+.module > a + a,
+pharmapp-card + pharmapp-card {
+  margin-top: 15px;
+}
+
+pharmapp-card {
+  max-width: 100%;
+}
+
+form {
+  margin: 15px;
+}
+
+form pharmapp-button {
+  float: right;
+  margin-top: 15px;
+}

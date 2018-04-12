@@ -1,0 +1,187 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../../bower_components/koa-behaviors/koa-toggle-button-behavior.html">
+<link rel="import" href="../../../../bower_components/paper-behaviors/paper-checked-element-behavior.html">
+<link rel="import" href="../../styles/default-theme.html">
+
+<dom-module id="pharmapp-toggle-button">
+  <template strip-whitespace>
+    <style>
+
+      :host {
+
+        display : inline-block;
+
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+
+      }
+
+      :host([disabled]) {
+
+        pointer-events : none;
+
+      }
+
+      :host(:focus) {
+
+        outline : none;
+
+      }
+
+      .toggle-bar {
+
+        background-color : var(--toggle-button-background-color-bar);
+
+        pointer-events : none;
+        border-radius  : 8px;
+        transition     : background-color linear .08s;
+        position       : absolute;
+        opacity        : 0.4;
+        height         : 100%;
+        width          : 100%;
+
+        @apply(--toggle-button-unchecked-bar);
+
+      }
+
+      .toggle-button {
+
+        background : var(--background-color-primary);
+
+        border-radius : 50%;
+        will-change   : transform;
+        transition    : -webkit-transform linear .08s, background-color linear .08s;
+        transition    : transform linear .08s, background-color linear .08s;
+        position      : absolute;
+        height        : 20px;
+        width         : 20px;
+        top           : -3px;
+
+        @apply(--toggle-button-unchecked-button);
+
+      }
+
+      .toggle-button.dragging {
+
+        -webkit-transition : none;
+        transition         : none;
+
+      }
+
+      :host([checked]:not([disabled])) .toggle-bar {
+
+        background-color : var(--toggle-button-background-color-bar);
+
+        @apply(--toggle-button-checked-bar);
+
+      }
+
+      :host([disabled]) .toggle-bar {
+
+        background-color : var(--background-color-disabled);
+
+      }
+
+      :host([checked]) .toggle-button {
+
+        background : var(--background-color-primary-dark);
+
+        -webkit-transform : translate(16px, 0);
+        transform         : translate(16px, 0);
+
+      }
+
+      :host([checked]:not([disabled])) .toggle-button {
+
+        background : var(--background-color-primary-dark);
+
+        @apply(--toggle-button-checked-button);
+
+      }
+
+      :host([disabled]) .toggle-button {
+
+        background-color : var(--text-color-disabled);
+
+      }
+
+      .toggle-ink {
+
+        color : var(--toggle-button-unchecked-ink-color, --primary-text-color);
+
+        pointer-events : none;
+        position       : absolute;
+        opacity        : 0.5;
+        height         : 48px;
+        width          : 48px;
+        left           : -14px;
+        top            : -14px;
+
+      }
+
+      :host([checked]) .toggle-ink {
+
+        color : var(--toggle-button-checked-ink-color, --primary-color);
+
+      }
+
+      .toggle-container {
+
+        position : relative;
+        display  : inline-block;
+        height   : 14px;
+        width    : 36px;
+
+        /* The toggle button has an absolute position of -3px; The extra 1px
+        /* accounts for the toggle button shadow box. */
+
+        margin : 4px 1px;
+
+      }
+
+      .toggle-label {
+
+        color        : var(--toggle-button-label-color, --primary-text-color);
+        padding-left : var(--toggle-button-label-spacing, 8px);
+        
+        vertical-align : middle;
+        pointer-events : none;
+        white-space    : normal;
+        position       : relative;
+        display        : inline-block;
+
+      }
+
+    </style>
+
+    <!-- write your template here -->
+    <div class="toggle-container">
+      <div id="toggleBar" class="toggle-bar"></div>
+      <div id="toggleButton" class="toggle-button"></div>
+    </div>
+
+    <div class="toggle-label"><content></content></div>
+    <!-- end template -->
+  </template>
+
+  <script>
+    Polymer({
+      is: 'pharmapp-toggle-button',
+
+      behaviors: [
+        Polymer.KoaToggleButtonBehavior,
+        Polymer.PaperCheckedElementBehavior
+      ],
+
+      // customize the element's ripple
+      _createRipple: function() {
+        this._rippleContainer = this.$.toggleButton;
+        var ripple = Polymer.PaperRippleBehavior._createRipple();
+        ripple.id = 'ink';
+        ripple.setAttribute('recenters', '');
+        ripple.classList.add('circle', 'toggle-ink');
+        return ripple;
+      }
+    });
+  </script>
+</dom-module>
