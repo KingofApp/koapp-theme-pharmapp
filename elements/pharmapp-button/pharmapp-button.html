@@ -10,9 +10,10 @@
       :host {
 
         background          : var(--background-color-primary);
+        color               : var(--text-color-primary);
         border-radius       : var(--button-border-radius);
         height              : var(--button-height);
-        width               : var(--button-width);
+        min-width           : var(--button-min-width);
         font-size           : var(--button-font-size);
         font                : var(--font-family-primary);
 
@@ -20,12 +21,11 @@
         position            : relative;
         box-sizing          : border-box;
         text-align          : center;
-        text-transform      : uppercase;
         outline-width       : 0;
         cursor              : pointer;
         z-index             : 0;
         margin              : 0 0.29em;
-        padding             : 0.7em 0.57em;
+        padding             : 16px;
         user-select         : none;
         -webkit-user-select : none;
         -moz-user-select    : none;
@@ -35,44 +35,16 @@
 
       }
 
-      :host .button-text{
-
-        color  : var(--text-color-primary);
-        width  : 120px;
-        height : 22px;
-
-        font-weight: normal;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: center;
-        text-transform: capitalize;
-
-      }
-
       :host([link]) {
 
         background-color : var(--background-color-link);
-
-      }
-
-      :host([link]) .button-text{
-
-        color : var(--text-color-link);
+        color            : var(--text-color-link);
 
       }
 
       :host([big]) {
 
         width  : var(--button-width-big);
-
-      }
-
-      :host([big]) .button-text{
-
-        width  : 222px;
-        height : 22px;
 
       }
 
@@ -87,7 +59,7 @@
 
       }
 
-      :host([disabled]) .button-text{
+      :host([disabled]){
 
         color : var(--text-color-disabled);
 
@@ -96,18 +68,11 @@
       :host([active]:not([link])), :host([selected]:not([link])) {
 
         background : var(--background-color-primary-dark);
-
-      }
-
-      :host([active][link]) .button-text, :host([selected][link]) .button-text {
-
-        color : var(--text-color-link-dark);
+        color      : var(--text-color-link-dark);
 
       }
 
       :host(:not([big]):not([link]).keyboard-focus) {
-
-        font-weight: bold;
 
         @apply(--button-keyboard-focus);
 
@@ -115,15 +80,11 @@
 
       :host([big].keyboard-focus) {
 
-        font-weight: bold;
-
         @apply(--button-big-keyboard-focus);
 
       }
 
       :host([link].keyboard-focus) {
-
-        font-weight: bold;
 
         @apply(--button-link-keyboard-focus);
         
@@ -140,10 +101,7 @@
     </style>
 
     <!-- write your template here -->
-    <span class="button-text">
-      <content>
-      </content>
-    </span>
+    <content></content>
     <!-- end template -->
   </template>
 

@@ -19,6 +19,12 @@
 
       }
 
+      :host > ::content pharmapp-icon-button {
+
+        border-radius : 50%;
+
+      }
+
       :host([active]) {
 
         background-color : #00e2a1;
@@ -30,6 +36,13 @@
         cursor : auto;
 
         @apply(--menu-button-disabled);
+
+      }
+
+      :host([disabled]) > ::content pharmapp-icon-button {
+
+        background: #f0f0f0;
+        color: #b5becb;
 
       }
 

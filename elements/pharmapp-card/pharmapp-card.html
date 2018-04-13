@@ -59,21 +59,95 @@
       }
 
       :host ::content .card-actions {
-        border-top: 1px solid #e8e8e8;
+
         padding: 5px 16px;
         position: relative;
+        text-align: right;
 
         @apply(--card-actions);
       }
+
+      :host ::content .card-actions pharmapp-button:first-of-type {
+
+        color: #6c7e98;
+
+      }
+
     </style>
 
     <!-- write your template here -->
+
     <div class="header">
-      <iron-image hidden$="[[!image]]" src="[[image]]" preload$="[[preloadImage]]" fade$="[[fadeImage]]"></iron-image>
-      <div hidden$="[[!heading]]" class="title-text">[[heading]]</div>
+
+      <template is="dom-if" if="[[ !horizontal ]]">
+
+        <iron-image
+          class="verticalImg"
+          style="
+            height : 140px;
+            border-top-left-radius : 3px;
+            border-top-right-radius : 3px;
+          "
+          sizing="cover"
+          hidden$="[[!image]]"
+          src="[[image]]"
+          preload$="[[preloadImage]]"
+          fade$="[[fadeImage]]"
+        >
+        </iron-image>
+
+      </template>
+
+      <template is="dom-if" if="[[ horizontal ]]">
+
+        <iron-image
+          hidden$="[[!image]]"
+          src="[[image]]"
+          style="
+            width : 130px;
+            border-top-left-radius : 3px;
+            border-bottom-left-radius : 3px;
+          "
+          sizing="cover"
+          preload$="[[preloadImage]]"
+          fade$="[[fadeImage]]"
+        >
+        </iron-image>
+
+      </template>
+
+      <template is="dom-if" if="[[ !horizontal ]]">
+        
+        <div hidden$="[[!heading]]" class="title-text">
+          [[heading]]
+        </div>
+
+      </template>
+
     </div>
 
-    <content></content>
+    <div class="horizontal-content">
+
+      <template is="dom-if" if="[[ horizontal ]]">
+
+        <div hidden$="[[!heading]]" class="title-text">
+          [[heading]]
+        </div>
+
+      </template>
+
+      <template is="dom-if" if="[[ subtext ]]">
+
+        <div hidden$="[[!subtext]]" class="subtext">
+          [[subtext]]
+        </div>
+
+      </template>
+
+      <content></content>
+
+    </div>
+
     <!-- end template -->
   </template>
 

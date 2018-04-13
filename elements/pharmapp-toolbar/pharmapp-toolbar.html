@@ -7,12 +7,11 @@
   <template>
     <style>
       :host {
-        background: var(--toolbar-background, --primary-color);
+        background: var(--toolbar-background, #ffffff);
           -moz-box-sizing: border-box;
         box-sizing: border-box;
-        color: var(--toolbar-color, #ffffff);
+        color: var(--toolbar-color, #6c7e98);
         display: block;
-        font-family: var(--toolbar-font-family, --title-font-family);
         height: var(--toolbar-height, 64px);
         position: relative;
 
@@ -108,6 +107,7 @@
         pointer-events: none;
         text-overflow: ellipsis;
         white-space: nowrap;
+        text-align: center;
 
         @apply(--toolbar-title);
       }
@@ -116,6 +116,11 @@
        * TODO: Refactor these selectors
        * Work in progress.
        */
+      .toolbar-tools > ::content pharmapp-icon-button {
+        background: transparent;
+        color: #6c7e98;
+      }
+
       .toolbar-tools > ::content pharmapp-icon-button[icon=menu] {
         margin-right: 24px;
       }

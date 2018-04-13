@@ -7,7 +7,14 @@
     <style>
       /* need a wrapper element to make this higher specificity than the :host rule in pharmapp-item */
       .selectable-content > ::content > .iron-selected {
-        font-weight: bold;
+        font-weight: normal;
+
+        @apply(--menu-selected-item);
+      }
+
+      .selectable-content.pharmapp-submenu > ::content > .iron-selected {
+        background: #7ea7e9;
+        color: #ffffff;
 
         @apply(--menu-selected-item);
       }
@@ -26,7 +33,6 @@
       .selectable-content > ::content > *:focus:after {
         @apply(--layout-fit);
 
-        background: currentColor;
         opacity: 0.12;
         content: '';
         pointer-events: none;

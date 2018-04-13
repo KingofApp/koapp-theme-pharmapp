@@ -13,8 +13,11 @@
         @apply(--paper-font-subhead);
 
         min-height: var(--item-min-height, 48px);
-        padding: 0px 16px;
+        padding: 10px 16px;
         position: relative;
+        border-bottom: 1px solid #f5f6fb;
+        color: #6c7e98;
+        font-size: 18px;
 
         @apply(--item);
       }
@@ -38,6 +41,8 @@
       :host(:focus) {
         position: relative;
         outline: 0;
+        border-left : 4px solid #7ea7e9;
+        padding: 10px 16px 10px 12px;
 
         @apply(--item-focused);
       }
@@ -45,7 +50,6 @@
       :host(:focus):before {
         @apply(--layout-fit);
 
-        background: currentColor;
         content: '';
         opacity: 0.12;
         pointer-events: none;
@@ -58,6 +62,7 @@
         @apply(--layout-center);
 
         width: var(--item-icon-width, 56px);
+        color: #7ea7e9;
         @apply(--item-icon);
       }
     </style>

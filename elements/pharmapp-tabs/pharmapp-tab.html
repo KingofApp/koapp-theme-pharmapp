@@ -11,7 +11,8 @@
 
         overflow : hidden;
         position : relative;
-        padding  : 0 12px;
+        padding  : 0px 12px 30px 12px;
+        height   : 70px;
         cursor   : pointer;
 
         @apply(--layout-center-justified);
@@ -61,14 +62,14 @@
         border-bottom : var(--tabs-border-bottom-focus);
         color         : var(--background-color-primary);
 
-        font-weight : 700;
-        opacity     : 1;
+        flex    : none;
+        opacity : 1;
 
       }
 
-      :host(:disabled) .tab-content {
+      :host([disabled]) .tab-content {
 
-        color : var(--background-color-disabled);
+        color : #f0f0f0;
 
       }
 
