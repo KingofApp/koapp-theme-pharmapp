@@ -9,7 +9,8 @@
     <style>
       :host {
         display: block;
-        padding: 8px 0;
+        padding: 12px 0;
+        font-size: 14px;
 
         @apply(--input-container);
       }
@@ -21,11 +22,13 @@
       :host([disabled]) {
         pointer-events: none;
         opacity: 0.33;
+        color: #f0f0f0;
 
         @apply(--input-container-disabled);
       }
 
       .floated-label-placeholder {
+
         @apply(--paper-font-caption);
       }
 
@@ -76,8 +79,8 @@
       }
 
       :host([disabled]) .unfocused-line {
-        border-bottom: 1px dashed;
-        border-color: var(--input-container-color, --secondary-text-color);
+        border-bottom: 1px solid;
+        border-color: #f0f0f0;
         background: transparent;
 
         @apply(--input-container-underline-disabled);
@@ -106,7 +109,7 @@
         left: 0;
         width: 100%;
         font: inherit;
-        color: var(--input-container-color, rgba(122, 137, 160, 0.5));
+        color: #6c7e98;
         -webkit-transition: -webkit-transform 0.25s, width 0.25s;
         transition: transform 0.25s, width 0.25s;
         -webkit-transform-origin: left top;
@@ -142,7 +145,7 @@
 
       .input-content.label-is-highlighted ::content label,
       .input-content.label-is-highlighted ::content .input-label {
-        color: var(--input-container-focus-color, --primary-color);
+        color: #6c7e98;
 
         @apply(--input-container-label-focus);
       }
@@ -169,7 +172,7 @@
         max-width: 100%;
         background: transparent;
         border: none;
-        color: var(--input-container-input-color, --primary-text-color);
+        color: #7a89a0;
         -webkit-appearance: none;
         text-align: inherit;
 
@@ -262,7 +265,7 @@
          */
         alwaysFloatLabel: {
           type: Boolean,
-          value: false
+          value: true
         }
       },
 

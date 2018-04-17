@@ -7,6 +7,8 @@
   <template>
     <style>
       :host {
+        @apply(--card);
+
         background-color: var(--card-background-color, --primary-background-color);
         border-radius: 2px;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
@@ -15,13 +17,8 @@
         box-sizing: border-box;
         display: inline-block;
         position: relative;
+        width: 100%
 
-        @apply(--card);
-      }
-
-      /* IE 10 support for HTML5 hidden attr */
-      [hidden] {
-        display: none !important;
       }
 
       .header {
@@ -67,86 +64,398 @@
         @apply(--card-actions);
       }
 
-      :host ::content .card-actions pharmapp-button:first-of-type {
+      :host .horizontal {
+
+        width    : 100%;
+        position : relative;
+
+      }
+
+      :host .horizontal iron-image {
+
+        width: 100%;
+        pointer-events: none;
+
+        --iron-image-width: 100%;
+
+        @apply(--card-header-image);
+
+      }
+
+      :host .horizontal .offer-container {
+
+        position : absolute;
+        top      : 106px;
+        right    : auto;
+        bottom   : auto;
+        left     : 0px;
+        background : #7ea7e9;
+        width      : 73px;
+        text-align : center;
+        padding    : 6px 0px;
+
+      }
+
+      :host .horizontal .offer-container .offer {
+
+        font-size : 18px;
+        color     : #ffffff;
+
+      }
+
+      :host .horizontal .body {
+
+        width: 100%;
+
+      }
+
+      :host .horizontal .body .sides {
+
+        display: flex;
+        width: 100%;
+        padding: 15px 0px;
+
+      }
+
+      :host .horizontal .body .sides .left {
+
+        width: 70%;
+        padding: 0px 15px 0px 20px;
+
+      }
+
+      :host .horizontal .body .sides .left .title {
+
+        font-size: 18px;
+        color: #6c7e98;
+        margin : 0px 0px 5px 0px;
+
+      }
+
+      :host .horizontal .body .sides .left .content {
+
+        font-size: 14px;
+        color: rgba(108, 126, 152, 0.5);
+
+      }
+
+      :host .horizontal .body .sides .right {
+
+        width: 30%;
+        padding: 0px 20px 0px 15px;
+        text-align: right;
+
+      }
+
+      :host .horizontal .body .sides .right .price {
+
+        font-size: 25px;
+        color: #7ea7e9;
+        margin : 0px 0px 5px 0px;
+
+      }
+
+      :host .horizontal .body .sides .right .view-more {
+
+        font-size: 12px;
+        color: #6c7e98;
+        margin: 25px 0px 0px 0px;
+
+      }
+
+      :host .horizontal ::content .card-buttons-container {
+
+        padding    : 10px 0px;
+        position   : relative;
+        text-align : right;
+
+        @apply(--card-actions);
+
+      }
+
+      :host(:not([show-buttons])) ::content .card-buttons-container {
+
+        display: none;
+
+        @apply(--card-actions);
+
+      }
+
+      :host .vertical {
+
+        width    : 100%;
+        height: 216px;
+        display: flex;
+        position : relative;
+
+      }
+
+      :host .vertical .left-side {
+
+        width: 45%;
+        height: 100%;
+        position : relative;
+
+      }
+
+      :host .vertical .left-side iron-image {
+
+        width: 100% !important;
+        height: 100% !important;
+        pointer-events: none;
+
+        --iron-image-width: 100%;
+
+        @apply(--card-header-image);
+
+      }
+
+      :host .vertical .left-side .offer-container {
+
+        position : absolute;
+        top      : 20px;
+        right    : auto;
+        bottom   : auto;
+        left     : 0px;
+        background : #7ea7e9;
+        width      : 73px;
+        text-align : center;
+        padding    : 6px 0px;
+
+      }
+
+      :host .vertical .left-side .offer-container .offer {
+
+        font-size : 18px;
+        color     : #ffffff;
+
+      }
+
+      :host .vertical .right-side {
+
+        width: 55% !important;
+        height: 100%;
+        text-align: left !important;
+
+      }
+
+      :host .vertical .right-side .title {
+
+        font-size: 18px;
+        color: #6c7e98;
+        margin : 15px 0px 5px 0px;
+
+      }
+
+      :host .vertical .right-side .content {
+
+        font-size: 14px;
+        color: rgba(108, 126, 152, 0.5);
+
+      }
+
+      :host .vertical .right-side {
+
+        width: 30%;
+        padding: 0px 20px 0px 15px;
+        text-align: right;
+
+      }
+
+      :host .vertical .right-side .price {
+
+        font-size: 25px;
+        color: #7ea7e9;
+        margin : 10px 0px 5px 0px;
+
+      }
+
+      :host .vertical ::content .card-buttons-container {
+
+        padding    : 5px 20px;
+        position   : relative;
+        text-align : center;
+        margin     : 15px 15px 5px 15px;
+
+        @apply(--card-actions);
+
+      }
+
+      :host ::content .card-buttons-container pharmapp-button {
 
         color: #6c7e98;
+        display: inline;
 
+      }
+
+      /* IE 10 support for HTML5 hidden attr */
+      :host [hidden] {
+        display: none !important;
       }
 
     </style>
 
     <!-- write your template here -->
 
-    <div class="header">
+    <template is="dom-if" if="[[ horizontal ]]">
 
-      <template is="dom-if" if="[[ !horizontal ]]">
+      <div class="horizontal">
 
-        <iron-image
-          class="verticalImg"
-          style="
-            height : 140px;
-            border-top-left-radius : 3px;
-            border-top-right-radius : 3px;
-          "
-          sizing="cover"
-          hidden$="[[!image]]"
-          src="[[image]]"
-          preload$="[[preloadImage]]"
-          fade$="[[fadeImage]]"
-        >
-        </iron-image>
+        <template is="dom-if" if="[[ image ]]">
+          
+          <iron-image
+            src="[[image]]"
+            style="
+              height : 140px;
+              width : 100%;
+              border-top-left-radius : 3px;
+              border-top-right-radius : 3px;
+            "
+            sizing="cover"
+            preload$="[[preloadImage]]"
+            fade$="[[fadeImage]]"
+          ></iron-image>
 
-      </template>
+        </template>
 
-      <template is="dom-if" if="[[ horizontal ]]">
+        <template is="dom-if" if="[[ offer ]]">
 
-        <iron-image
-          hidden$="[[!image]]"
-          src="[[image]]"
-          style="
-            width : 130px;
-            border-top-left-radius : 3px;
-            border-bottom-left-radius : 3px;
-          "
-          sizing="cover"
-          preload$="[[preloadImage]]"
-          fade$="[[fadeImage]]"
-        >
-        </iron-image>
+          <div class="offer-container">
+            
+            <span class="offer">
+              [[offer]]
+            </span>
 
-      </template>
+          </div>
 
-      <template is="dom-if" if="[[ !horizontal ]]">
-        
-        <div hidden$="[[!heading]]" class="title-text">
-          [[heading]]
+        </template>
+
+        <div class="body">
+          
+          <div class="sides">
+            
+            <div class="left">
+              
+              <template is="dom-if" if="[[ title ]]">
+
+                <div class="title" hidden$="[[!title]]">
+                  [[title]]
+                </div>
+
+              </template>
+
+              <template is="dom-if" if="[[ content ]]">
+
+                <div class="content" hidden$="[[!content]]">
+                  [[content]]
+                </div>
+
+              </template>
+
+            </div>
+
+            <div class="right">
+              
+              <template is="dom-if" if="[[ price ]]">
+
+                <div class="price" hidden$="[[!price]]">
+                  [[price]]
+                </div>
+
+              </template>
+
+              <template is="dom-if" if="[[ view-more ]]">
+
+                <div class="view-more" hidden$="[[!view-more]]">
+                  View more
+                </div>
+
+              </template>
+
+            </div>
+
+          </div>
+
+          <content>
+          </content>
+
         </div>
 
-      </template>
+      </div>
 
-    </div>
+    </template>
 
-    <div class="horizontal-content">
+    <template is="dom-if" if="[[ vertical ]]">
 
-      <template is="dom-if" if="[[ horizontal ]]">
+      <div class="vertical">
 
-        <div hidden$="[[!heading]]" class="title-text">
-          [[heading]]
+        <template is="dom-if" if="[[ image ]]">
+          
+          <div class="left-side">
+            
+            <iron-image
+              src="[[image]]"
+              style="
+                height : 100%;
+                width : 100%;
+                border-top-left-radius : 3px;
+                border-bottom-left-radius : 3px;
+              "
+              sizing="cover"
+              preload$="[[preloadImage]]"
+              fade$="[[fadeImage]]"
+            ></iron-image>
+
+            <template is="dom-if" if="[[ offer ]]">
+
+              <div class="offer-container">
+                
+                <span class="offer">
+                  [[offer]]
+                </span>
+
+              </div>
+
+            </template>
+
+          </div>
+
+        </template>
+
+        <div class="right-side">
+          
+          <template is="dom-if" if="[[ title ]]">
+
+            <div class="title" hidden$="[[!title]]">
+              [[title]]
+            </div>
+
+          </template>
+
+          <template is="dom-if" if="[[ content ]]">
+
+            <div class="content" hidden$="[[!content]]">
+              [[content]]
+            </div>
+
+          </template>
+
+          <template is="dom-if" if="[[ price ]]">
+
+            <div class="price" hidden$="[[!price]]">
+              [[price]]
+            </div>
+
+          </template>
+
+          <content>
+          </content>
+
         </div>
 
-      </template>
+      </div>
 
-      <template is="dom-if" if="[[ subtext ]]">
-
-        <div hidden$="[[!subtext]]" class="subtext">
-          [[subtext]]
-        </div>
-
-      </template>
-
-      <content></content>
-
-    </div>
+    </template>
 
     <!-- end template -->
   </template>

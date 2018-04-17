@@ -29,7 +29,7 @@
         background-color: #00e2a1;
         border-radius: 50%;
         color: var(--badge-text-color, white);
-        font-size: 11px;
+        font-size: 10px;
         font-weight: normal;
         height: var(--badge-height, 20px);
         margin-bottom: var(--badge-margin-bottom, -20px);
@@ -39,6 +39,15 @@
         height: var(--badge-height, 15px);
 
         @apply(--badge);
+      }
+
+      :host([for-text]) {
+
+        top : -12.5px !important;
+        right  : -15px !important;
+        bottom : auto !important;
+        left : auto !important;
+
       }
     </style>
 

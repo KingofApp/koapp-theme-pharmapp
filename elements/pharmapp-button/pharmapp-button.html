@@ -9,13 +9,13 @@
 
       :host {
 
-        background          : var(--background-color-primary);
+        background          : var(--background-color-primary-dark);
         color               : var(--text-color-primary);
         border-radius       : var(--button-border-radius);
         height              : var(--button-height);
         min-width           : var(--button-min-width);
         font-size           : var(--button-font-size);
-        font                : var(--font-family-primary);
+        font-family         : var(--font-family-primary);
 
         display             : inline-block;
         position            : relative;
@@ -25,7 +25,7 @@
         cursor              : pointer;
         z-index             : 0;
         margin              : 0 0.29em;
-        padding             : 16px;
+        padding             : 14px 15px;
         user-select         : none;
         -webkit-user-select : none;
         -moz-user-select    : none;
@@ -35,16 +35,23 @@
 
       }
 
-      :host([link]) {
+      :host(:not([link])):hover, :host(:not([link])):focus {
 
-        background-color : var(--background-color-link);
-        color            : var(--text-color-link);
+        background : var(--background-color-primary-dark);
+        color      : var(--text-color-primary);
 
       }
 
       :host([big]) {
 
-        width  : var(--button-width-big);
+        width : var(--button-width-big);
+
+      }
+
+      :host([link]) {
+
+        background-color : var(--background-color-link);
+        color            : var(--text-color-link);
 
       }
 
@@ -68,33 +75,20 @@
       :host([active]:not([link])), :host([selected]:not([link])) {
 
         background : var(--background-color-primary-dark);
+        color      : var(--text-color-primary);
+
+      }
+
+      :host([active][link]), :host([selected][link]) {
+
+        background : var(--background-color-link);
         color      : var(--text-color-link-dark);
 
       }
 
-      :host(:not([big]):not([link]).keyboard-focus) {
-
-        @apply(--button-keyboard-focus);
-
-      }
-
-      :host([big].keyboard-focus) {
-
-        @apply(--button-big-keyboard-focus);
-
-      }
-
-      :host([link].keyboard-focus) {
-
-        @apply(--button-link-keyboard-focus);
-        
-      }
-
       :host(:not([link]):not([disabled])) {
 
-        box-shadow: 0 2px 2px 0    var(--background-color-primary),
-                    0 1px 5px 0    var(--background-color-primary),
-                    0 3px 1px -2px var(--background-color-primary);
+        box-shadow : 0 0 15px 0 rgba(106,157,236,0.20);
 
       }
 
