@@ -29,6 +29,7 @@
   },
   "defaultConfig": {
     "colors": {
+      "gray"                           : "#b5becb",
       "fontFamilyPrimary"              : "Lato",
       "fontFamilyTitle"                : "Lato",
       "backgroundColorPrimary"         : "#7ea7e9",

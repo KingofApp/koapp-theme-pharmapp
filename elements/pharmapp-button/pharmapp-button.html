@@ -9,7 +9,9 @@
 
       :host {
 
-        background          : var(--background-color-primary-dark);
+        @apply(--button);
+
+        background          : var(--background-color-primary);
         color               : var(--text-color-primary);
         border-radius       : var(--button-border-radius);
         height              : var(--button-height);
@@ -30,8 +32,6 @@
         -webkit-user-select : none;
         -moz-user-select    : none;
         -ms-user-select     : none;
-
-        @apply(--button);
 
       }
 

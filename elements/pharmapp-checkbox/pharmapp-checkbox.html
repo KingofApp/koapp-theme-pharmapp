@@ -15,6 +15,7 @@
         line-height : 0;
         display     : inline-block;
         cursor      : pointer;
+        font-family : var(--font-family-primary);
 
       }
 
@@ -75,7 +76,7 @@
 
       #checkbox {
 
-        border : var(--checkbox-border);
+        border : 2px solid var(--gray);
 
         -webkit-transition : background-color 140ms, border-color 140ms;
         transition         : background-color 140ms, border-color 140ms;
@@ -84,6 +85,12 @@
         border-radius      : 0px;
         position           : relative;
         height             : 100%;
+
+      }
+
+      :host([focused]) #checkbox {
+
+        box-shadow : 0 0 15px 5px rgba(106,157,236,0.20);
 
       }
 
@@ -220,7 +227,6 @@
 
       :host([disabled]) #checkboxLabel  {
 
-        opacity: 0.65;
 
       }
 
@@ -228,6 +234,21 @@
       #checkbox.invalid:not(.checked) {
 
         border-color : var(--checkbox-error-color, --error-color);
+
+      }
+
+      #checkboxSubText {
+
+        padding : 10px 0px 0px 30px;
+        color   : var(--checkbox-text-color);
+
+        vertical-align : middle;
+        pointer-events : none;
+        line-height    : normal;
+        white-space    : normal;
+        position       : relative;
+        display        : block;
+        font-size      : 12px;
 
       }
 
@@ -240,7 +261,22 @@
       </div>
     </div>
 
-    <div id="checkboxLabel"><content></content></div>
+    <div id="checkboxLabel">
+
+      <content>
+      </content>
+
+    </div>
+
+    <template is="dom-if" if="[[ subtext ]]">
+      
+      <div id="checkboxSubText">
+
+        [[subtext]]
+
+      </div>
+
+    </template>
     <!-- end template -->
   </template>
 
@@ -251,13 +287,8 @@
       behaviors: [
         Polymer.KoaCheckboxBehavior,
         Polymer.PaperCheckedElementBehavior
-      ],
+      ]
 
-      // create ripple inside the checkboxContainer
-      _createRipple: function() {
-        this._rippleContainer = this.$.checkboxContainer;
-        return Polymer.PaperInkyFocusBehaviorImpl._createRipple.call(this);
-      }
     });
   </script>
 </dom-module>

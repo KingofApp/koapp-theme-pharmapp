@@ -9,11 +9,11 @@
       :host {
         @apply(--card);
 
-        background-color: var(--card-background-color, --primary-background-color);
+        background-color : var(--card-background-color, --primary-background-color);
+        font-family      : var(--font-family-primary);
+
         border-radius: 2px;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-                    0 1px 5px 0 rgba(0, 0, 0, 0.12),
-                    0 3px 1px -2px rgba(0, 0, 0, 0.2);
+        box-shadow : 0 0 15px 0 rgba(106,157,236,0.20);
         box-sizing: border-box;
         display: inline-block;
         position: relative;
@@ -21,57 +21,14 @@
 
       }
 
-      .header {
-        border-top-left-radius: inherit;
-        border-top-right-radius: inherit;
-        overflow: hidden;
-        position: relative;
-
-        @apply(--card-header);
-      }
-
-      .header iron-image {
-        width: 100%;
-        --iron-image-width: 100%;
-        pointer-events: none;
-
-        @apply(--card-header-image);
-      }
-
-      .header .title-text {
-        color: var(--card-header-color, #000);
-        padding: 16px;
-        font-family: var(--card-header-font-family, --title-font-family);
-        font-size: 24px;
-        font-weight: 400;
-
-        @apply(--card-header-text);
-      }
-
-      :host ::content .card-content {
-        padding: 16px;
-        position: relative;
-
-        @apply(--card-content);
-      }
-
-      :host ::content .card-actions {
-
-        padding: 5px 16px;
-        position: relative;
-        text-align: right;
-
-        @apply(--card-actions);
-      }
-
-      :host .horizontal {
+      :host .standar {
 
         width    : 100%;
         position : relative;
 
       }
 
-      :host .horizontal iron-image {
+      :host .standar iron-image {
 
         width: 100%;
         pointer-events: none;
@@ -82,7 +39,7 @@
 
       }
 
-      :host .horizontal .offer-container {
+      :host .standar .offer-container {
 
         position : absolute;
         top      : 106px;
@@ -96,20 +53,20 @@
 
       }
 
-      :host .horizontal .offer-container .offer {
+      :host .standar .offer-container .offer {
 
         font-size : 18px;
         color     : #ffffff;
 
       }
 
-      :host .horizontal .body {
+      :host .standar .body {
 
         width: 100%;
 
       }
 
-      :host .horizontal .body .sides {
+      :host .standar .body .sides {
 
         display: flex;
         width: 100%;
@@ -117,14 +74,14 @@
 
       }
 
-      :host .horizontal .body .sides .left {
+      :host .standar .body .sides .left {
 
         width: 70%;
         padding: 0px 15px 0px 20px;
 
       }
 
-      :host .horizontal .body .sides .left .title {
+      :host .standar .body .sides .left .title {
 
         font-size: 18px;
         color: #6c7e98;
@@ -132,14 +89,14 @@
 
       }
 
-      :host .horizontal .body .sides .left .content {
+      :host .standar .body .sides .left .content {
 
         font-size: 14px;
         color: rgba(108, 126, 152, 0.5);
 
       }
 
-      :host .horizontal .body .sides .right {
+      :host .standar .body .sides .right {
 
         width: 30%;
         padding: 0px 20px 0px 15px;
@@ -147,7 +104,7 @@
 
       }
 
-      :host .horizontal .body .sides .right .price {
+      :host .standar .body .sides .right .price {
 
         font-size: 25px;
         color: #7ea7e9;
@@ -155,7 +112,7 @@
 
       }
 
-      :host .horizontal .body .sides .right .view-more {
+      :host .standar .body .sides .right .view-more {
 
         font-size: 12px;
         color: #6c7e98;
@@ -163,7 +120,7 @@
 
       }
 
-      :host .horizontal ::content .card-buttons-container {
+      :host .standar ::content .card-buttons-container {
 
         padding    : 10px 0px;
         position   : relative;
@@ -173,15 +130,7 @@
 
       }
 
-      :host(:not([show-buttons])) ::content .card-buttons-container {
-
-        display: none;
-
-        @apply(--card-actions);
-
-      }
-
-      :host .vertical {
+      :host .horizontal {
 
         width    : 100%;
         height: 216px;
@@ -190,7 +139,7 @@
 
       }
 
-      :host .vertical .left-side {
+      :host .horizontal .left-side {
 
         width: 45%;
         height: 100%;
@@ -198,7 +147,7 @@
 
       }
 
-      :host .vertical .left-side iron-image {
+      :host .horizontal .left-side iron-image {
 
         width: 100% !important;
         height: 100% !important;
@@ -210,7 +159,7 @@
 
       }
 
-      :host .vertical .left-side .offer-container {
+      :host .horizontal .left-side .offer-container {
 
         position : absolute;
         top      : 20px;
@@ -224,14 +173,14 @@
 
       }
 
-      :host .vertical .left-side .offer-container .offer {
+      :host .horizontal .left-side .offer-container .offer {
 
         font-size : 18px;
         color     : #ffffff;
 
       }
 
-      :host .vertical .right-side {
+      :host .horizontal .right-side {
 
         width: 55% !important;
         height: 100%;
@@ -239,7 +188,7 @@
 
       }
 
-      :host .vertical .right-side .title {
+      :host .horizontal .right-side .title {
 
         font-size: 18px;
         color: #6c7e98;
@@ -247,14 +196,14 @@
 
       }
 
-      :host .vertical .right-side .content {
+      :host .horizontal .right-side .content {
 
         font-size: 14px;
         color: rgba(108, 126, 152, 0.5);
 
       }
 
-      :host .vertical .right-side {
+      :host .horizontal .right-side {
 
         width: 30%;
         padding: 0px 20px 0px 15px;
@@ -262,7 +211,7 @@
 
       }
 
-      :host .vertical .right-side .price {
+      :host .horizontal .right-side .price {
 
         font-size: 25px;
         color: #7ea7e9;
@@ -270,7 +219,7 @@
 
       }
 
-      :host .vertical ::content .card-buttons-container {
+      :host .horizontal ::content .card-buttons-container {
 
         padding    : 5px 20px;
         position   : relative;
@@ -283,8 +232,22 @@
 
       :host ::content .card-buttons-container pharmapp-button {
 
-        color: #6c7e98;
-        display: inline;
+        color   : #7ea7e9;
+        display : inline;
+
+      }
+
+      :host ::content .card-buttons-container pharmapp-button:first-of-type {
+
+        color   : #6c7e98;
+
+      }
+
+      :host(:not([show-buttons])) ::content .card-buttons-container {
+
+        display: none;
+
+        @apply(--card-actions);
 
       }
 
@@ -297,9 +260,9 @@
 
     <!-- write your template here -->
 
-    <template is="dom-if" if="[[ horizontal ]]">
+    <template is="dom-if" if="[[ standar ]]">
 
-      <div class="horizontal">
+      <div class="standar">
 
         <template is="dom-if" if="[[ image ]]">
           
@@ -385,9 +348,9 @@
 
     </template>
 
-    <template is="dom-if" if="[[ vertical ]]">
+    <template is="dom-if" if="[[ horizontal ]]">
 
-      <div class="vertical">
+      <div class="horizontal">
 
         <template is="dom-if" if="[[ image ]]">
           
